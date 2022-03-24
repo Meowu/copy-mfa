@@ -11,7 +11,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let mut clipboard = Clipboard::new().unwrap();
 
-    let mut secret = String::new();
+    let secret;
 
     let args: Vec<String> = env::args().collect();
     if args.len() > 1 {
