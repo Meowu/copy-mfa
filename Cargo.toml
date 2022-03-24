@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 google-authenticator = "0.3.0"
+arboard = { version = "2", features = [ "image-data", "wayland-data-control" ], default-features = false }

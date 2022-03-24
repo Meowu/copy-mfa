@@ -2,11 +2,14 @@ use google_authenticator::GoogleAuthenticator;
 use std::env;
 use std::process;
 use std::error::Error;
+use arboard::Clipboard;
 
 const ENV_KEY: &str = "MFA_SECRET";
 
 
 fn main() -> Result<(), Box<dyn Error>> {
+
+    let mut clipboard = Clipboard::new().unwrap();
 
     let mut secret = String::new();
 
@@ -24,9 +27,12 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
         }
     }
-    println!("generateing GA code for secrect: {}", secret);
+
     let auth = GoogleAuthenticator::new();
     let code = auth.get_code(&secret, 0)?;
-    println!("generated GA code for given secret {}: {}.", secret, code);
+
+    clipboard.set_text(code).unwrap();
+	println!("GA number copied: {}", clipboard.get_text().unwrap());
+
     process::exit(0);
 }
