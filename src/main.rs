@@ -32,7 +32,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let code = auth.get_code(&secret, 0)?;
 
     clipboard.set_text(code).unwrap();
-	println!("GA number copied: {}", clipboard.get_text().unwrap());
+    println!("GA number copied: {}", clipboard.get_text().unwrap());
 
     process::exit(0);
 }
